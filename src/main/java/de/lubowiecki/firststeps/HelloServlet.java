@@ -31,9 +31,11 @@ public class HelloServlet extends HttpServlet {
 
         ServletContext context = this.getServletContext();
 
+        // getParameter bekommt name aus dem Formular als key
+        User userObj = new User(1, req.getParameter("firstname"), req.getParameter("lastname"));
+
         // Platzhalter für das Template erzeugen
-        req.setAttribute("name", req.getParameter("name"));
-        req.setAttribute("methode", req.getMethod());
+        req.setAttribute("user", userObj);
 
         // Vorlage aufrufen
         context.getRequestDispatcher("/vorlage.jsp").forward(req, resp);

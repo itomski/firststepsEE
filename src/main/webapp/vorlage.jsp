@@ -15,6 +15,6 @@
 </head>
 <body>
   <h1>Hallo!</h1>
-  <p>Das ist der Name: <%= request.getAttribute("name") %>, <%= request.getAttribute("methode") %></p>
+  <p>Das ist der Name: ${user.firstname}, ${user.lastname}</p>
 </body>
 </html>

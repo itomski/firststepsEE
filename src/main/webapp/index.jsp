@@ -8,12 +8,17 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-    <form action="hello" method="get">
+    <form action="hello" method="post">
         <h1>Form</h1>
 
         <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name">
+            <label for="firstname">Vorname</label>
+            <input type="text" name="firstname" id="firstname">
+        </div>
+
+        <div>
+            <label for="lastname">Nachname</label>
+            <input type="text" name="lastname" id="lastname">
         </div>
 
         <button type="submit">Senden</button>
