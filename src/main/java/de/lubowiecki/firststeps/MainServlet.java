@@ -70,32 +70,32 @@ public class MainServlet extends HttpServlet { // Servlet(Interface) > GenericSe
             case "products":
                 title = "Produkte";
                 headline = "Das sind unsere Produkte";
-                headerImg = "hamburg1.jpg";
+                headerImg = "img1.jpg";
                 break;
 
             case "services":
                 title = "Services";
                 headline = "Das sind unsere Services";
-                headerImg = "hamburg2.webp";
+                headerImg = "img2.jpg";
                 break;
 
             case "team":
                 title = "Team";
                 headline = "Unsere volle Kompetenz";
-                headerImg = "hamburg3.webp";
+                headerImg = "img3.jpg";
                 break;
 
             case "contact":
                 title = "Konktakt";
                 headline = "Schreiben Sie uns doch...";
-                headerImg = "hamburg4.webp";
+                headerImg = "img1.jpg";
                 template = "contact-form";
                 break;
 
             default:
                 title = "Home";
                 headline = "Herzlich Willkommen";
-                headerImg = "hamburg1.jpg";
+                headerImg = "img2.jpg";
                 break;
         }
 
