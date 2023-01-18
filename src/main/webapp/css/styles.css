@@ -88,13 +88,3 @@ table, th, td {
 th, td {
     padding: 5px;
 }
-
-#img-box {
-    background-image: url(../img/spiderman1.jpg);
-    background-color: #39A2BF;
-    height: 200px;
-    width: 400px;
-    background-size: cover;
-    background-repeat: no-repeat; /* Binld wird nicht mehrmals eingesetzt */
-    background-position: center;
-}

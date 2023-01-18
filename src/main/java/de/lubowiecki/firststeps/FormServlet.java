@@ -6,12 +6,29 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/submit")
 public class FormServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("---- GET ----");
+
+        final PrintWriter output = response.getWriter();
+        response.setContentType("application/json"); // Typ der Rückgabe für den Browser bestimmen
+        response.setCharacterEncoding("UTF-8"); // Zeichenkodierung bestimmen
+        output.println("[{");
+        output.println("\"title\": \"Herr\",");
+        output.println("\"name\": \"Peter Parker\",");
+        output.println("\"country\": \"Deutschland\",");
+        output.println("\"email\": \"p.parker@shield.org\",");
+        output.println("\"message\": \"Das ist meine Nachricht.\"");
+        output.println("}]");
+
+        //response.setStatus(HttpServletResponse.SC_OK); // Seite wurde gefunden, Standard
+        //response.setStatus(HttpServletResponse.SC_NOT_FOUND); // Seite wurde NICHT gefunden - als Status
+        //response.sendError(HttpServletResponse.SC_NOT_FOUND); // Seite wurde NICHT gefunden - als Error
+        //response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE); // Seite wurde NICHT gefunden
     }
 
     @Override
@@ -36,14 +53,23 @@ public class FormServlet extends HttpServlet {
         output.println("<p>message: " + message + "</p>");
         output.println("</body></html>");
         */
+
+        Map<String, String> laender = new HashMap<>();
+        laender.put("de", "Deutschland");
+        laender.put("es", "Spanien");
+        laender.put("uk", "England");
+        laender.put("us", "USA");
+
         response.setContentType("application/json"); // Typ der Rückgabe für den Browser bestimmen
         response.setCharacterEncoding("UTF-8"); // Zeichenkodierung bestimmen
-        output.println("{");
-        output.println("\"title\": \"" + title + "\"");
+        //response.setHeader("Content-Type", "application/json; charset=UTF-8"); // Zusammengesetzt als HTTP-Header
+        //response.setContentType("application/json; charset=UTF-8"); // Zusammengesetzt als HTTP-Header
+        output.println("[{");
+        output.println("\"title\": \"" + ((title.equals("w")) ? "Frau" : "Mann")  + "\"");
         output.println("\"name\": \"" + name + "\"");
-        output.println("\"country\": \"" + country + "\"");
+        output.println("\"country\": \"" + laender.get(country) + "\"");
         output.println("\"email\": \"" + email + "\"");
         output.println("\"message\": \"" + message + "\"");
-        output.println("}");
+        output.println("}]");
     }
 }
