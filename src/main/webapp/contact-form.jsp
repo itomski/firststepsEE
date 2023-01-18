@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.2.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -24,21 +25,27 @@
         <main>
             <h1>${headline}</h1>
 
-            <form action="#" method="get">
+            <form action="submit" method="post">
 
-                <div class="mb">
-                    <input type="radio" name="title" id="title_1" value="frau"><label for="title_1">Frau</label><br>
-                    <input type="radio" name="title" id="title_2" value="herr"><label for="title_2">Herr</label><br>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input type="radio" name="title" id="title_1" value="w" class="form-check-input">
+                        <label for="title_1" class="form-check-label">Frau</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="title" id="title_2" value="m" class="form-check-input">
+                        <label for="title_2" class="form-check-label">Herr</label>
+                    </div>
                 </div>
 
-                <div class="mb">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" id="name" class="form-control">
                 </div>
 
-                <div class="mb">
-                    <label for="country">Land</label>
-                    <select name="country" id="country">
+                <div class="mb-3">
+                    <label for="country" class="form-label">Land</label>
+                    <select name="country" id="country" class="form-select">
                         <option value="de">Deutschland</option>
                         <option value="es">Spanien</option>
                         <option value="uk">England</option>
@@ -46,16 +53,16 @@
                     </select>
                 </div>
 
-                <div class="mb">
-                    <label for="email">E-Mail</label>
-                    <input type="email" name="email" id="email">
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-Mail</label>
+                    <input type="email" name="email" id="email" class="form-control">
                 </div>
 
                 <div class="mb">
-                    <label for="message">Nachricht</label>
-                    <textarea name="message" id="message" rows="5"></textarea>
+                    <label for="message" class="form-label">Nachricht</label>
+                    <textarea name="message" id="message" rows="5" class="form-control"></textarea>
                 </div>
-                <button type="submit">Senden</button>
+                <button type="submit" class="btn btn-success">Senden</button>
 
             </form>
 
@@ -66,5 +73,7 @@
     </div>
 
     <footer>Footer</footer>
+
+    <script src="webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

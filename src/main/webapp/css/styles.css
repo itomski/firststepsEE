@@ -98,8 +98,3 @@ th, td {
     background-repeat: no-repeat; /* Binld wird nicht mehrmals eingesetzt */
     background-position: center;
 }
-
-/* FORM */
-.mb {
-    margin-bottom: .5em;
-}
