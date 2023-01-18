@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header style="background-image: url('img/${headerImg}')">Header...</header>
+    <header style="background-image: url('img/${headerImg}')">Header</header>
 
     <nav id="top-nav">
         <ul>
