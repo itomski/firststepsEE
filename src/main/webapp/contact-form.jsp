@@ -15,7 +15,7 @@
     <nav id="top-nav">
         <ul>
             <li><a href="main" class="aktiv">Home</a></li>
-            <li><a href="main?a=products">Produkte</a></li>
+            <li><a href="products">Produkte</a></li>
             <li><a href="main?a=services">Services</a></li>
             <li><a href="main?a=team">Team</a></li>
             <li><a href="main?a=contact">Kontakt</a></li>
