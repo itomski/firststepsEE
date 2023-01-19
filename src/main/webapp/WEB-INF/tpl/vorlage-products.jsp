@@ -23,7 +23,7 @@
                 %>
                 <%! int a = 10; %><%-- hier nur Deklarationen rein --%>
                 <%! int x = 10, c = 20; long z = 20L; Object o = new Object(); %>
-                <%= a %><%-- Ausgabe --%>
+                <!-- <%= a %> --><%-- Ausgabe --%>
                 <%-- Kommentar, wird im HTML-Code nicht angezeigt --%>
 
                 <table class="table">
@@ -49,6 +49,28 @@
             </main>
 
             <aside class="col-sm-4 py-3">
+                <h2>Neues Produkt</h2>
+                <form action="products" method="post">
+
+                    <input type="hidden" name="id" value="${product.id}">
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" value="${product.name}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Beschreibung</label>
+                        <textarea name="description" id="description" rows="5" class="form-control">${product.description}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Preis</label>
+                        <input type="text" name="price" id="price" class="form-control" value="${product.price}">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Speichern</button>
+                </form>
             </aside>
         </div>
     </div>

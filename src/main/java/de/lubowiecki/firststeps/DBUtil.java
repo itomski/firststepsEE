@@ -15,7 +15,7 @@ public class DBUtil {
 
     public static Connection getConnection() throws SQLException {
         try {
-            Class.forName("com.mysql.jdbc.Driver"); // Import zur Laufzeit
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Import zur Laufzeit
         }
         catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
