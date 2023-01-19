@@ -1,90 +1,45 @@
 :root {
-    --light-blue: #0A5978; /* Deklaration der Variable */
-}
-
-body {
-    margin: 0;
-    /* font-size: 16px; ist im Browser default */
+    --lighter-blue: #75b4c5;
+    --light-blue: #0A5978;
+    --dark-blue: #09262A;
+    --light-white: #F0F9F6;
 }
 
 header {
-    background-color: var(--light-blue); /* Verwendung der Variable */
+    background-color: var(--light-blue);
     height: 400px;
-    padding: 20px;
-    /* ohne box-sizing wir padding auf die höhe und breite draufgerechnet */
-    box-sizing: border-box; /* breite und höhe werden inkl. padding gerechnet */
     background-size: cover;
-}
-
-/* id */
-#content {
-    display: flex;
-    flex-wrap: wrap; /* Umbrechen der Zeilen möglich */
+    background-position: center;
 }
 
 main {
-    background-color: #F0F9F6;
-    min-height: 500px; /* hat eine Mindeshöhe und wächst mit dem Inhalt */
-    flex: 60%;
-    padding: 20px;
-    box-sizing: border-box;
+    background-color: var(--light-white);
+    min-height: 500px;
 }
 
-/* Selektiert eine aside, wenn diese ein Kindelement von #content ist */
 #content aside {
-    background-color: #39A2BF;
+    background-color: var(--lighter-blue);
     min-height: 500px;
-    flex: 40%;
-    padding: 20px;
-    box-sizing: border-box;
 }
 
 footer {
-    background-color: #09262A;
-    /* background-color: #f00; */
+    background-color: var(--dark-blue);
     height: 300px;
-    padding: 20px;
-    box-sizing: border-box;
-    color: #F0F9F6; /* Schriftfarbe */
+    color: var(--light-white);
 }
 
 #top-nav {
-    background-color: #09262A;
-    color: #F0F9F6;
+    background-color: var(--dark-blue);
+    color: var(--light-white);
 }
 
-/* Selektiert nur Links in der #top-nav Navigation */
 #top-nav a {
-    color: #F0F9F6;
-    text-transform: uppercase; /* in Großbuchstaben ändern */
-    text-decoration: none; /* Untersticht entfernen */
-    transition: all 0.5s; /* beschreibt, wievel Zeit für einen Zustandswechsel verwendet wird */
+    color: var(--light-white);
+    text-transform: uppercase;
+    transition: all 0.5s;
 }
 
-#top-nav a.aktiv, /* Klasse: kann mehreren verschiedenen Elementen gleichzeitig zugeordnet werden */
-#top-nav a:hover { /* hover = Mit der Maus drüber */
-    color: #75b4c5;
-}
-
-#top-nav ul {
-    margin-top: 0;
-    margin-bottom: 0;
-    list-style-type: none; /* Aufzähungspunkte abschalten */
-    display: flex;
-    padding: 0;
-}
-
-#top-nav ul li {
-    /*margin: 10px;*/ /* Abstand nach Außen */
-    padding: 10px; /* Abstand vom Rand zum Inhalt */
-}
-
-/* TABLE */
-table, th, td {
-    border: 1px solid  #09262A; /* Rahmen */
-    border-collapse: collapse; /* Rahmen miteinander verrechnen */
-}
-
-th, td {
-    padding: 5px;
+#top-nav a.activ,
+#top-nav a:hover {
+    color: var(--lighter-blue);
 }

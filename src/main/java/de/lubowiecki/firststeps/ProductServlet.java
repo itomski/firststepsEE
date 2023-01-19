@@ -31,6 +31,6 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("headline", "Unsere Produkte");
         request.setAttribute("products", products); // Weitergabe der Liste an die JSP
         // Leitet die Anfrage weiter an die JSP
-        context.getRequestDispatcher("/vorlage-products.jsp").forward(request, response);
+        context.getRequestDispatcher("/WEB-INF/tpl/vorlage-products.jsp").forward(request, response);
     }
 }

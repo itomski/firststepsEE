@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.*;
 
 //@WebServlet(name = "mainServlet", value = "/main")
 //@WebServlet("/main") // Es wird nur das URL-Mapping reingeschrieben
-@WebServlet(value = "/main", loadOnStartup = 1) // LoadOnStartup = Wird instanziert sobald der Server startet
+@WebServlet(value = {"", "/main"}, loadOnStartup = 1) // LoadOnStartup = Wird instanziert sobald der Server startet
 public class MainServlet extends HttpServlet { // Servlet(Interface) > GenericServlet(abstrakte Klasse) > HttpServlet(konkrete Klasse)
 
     @Override
@@ -117,7 +117,7 @@ public class MainServlet extends HttpServlet { // Servlet(Interface) > GenericSe
 
         // Vorlage aufrufen
         resp.addCookie(new Cookie("name", "Peter")); // Antwort wird um ein Cookie erweitert
-        context.getRequestDispatcher("/" + template + ".jsp").forward(req, resp);
+        context.getRequestDispatcher("/WEB-INF/tpl/" + template + ".jsp").forward(req, resp);
     }
 
     @Override
