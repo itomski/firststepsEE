@@ -12,9 +12,9 @@
     <%@include file="header.jsp"%>
     <%@include file="main-nav.html"%>
 
-    <div class="container">
+    <div id="content" class="container">
         <div class="row">
-            <main class="col-8">
+            <main class="col-sm-8 py-3">
                 <h1>${headline}</h1>
 
                 <%
@@ -48,7 +48,7 @@
                 </table>
             </main>
 
-            <aside class="col-4">
+            <aside class="col-sm-4 py-3">
             </aside>
         </div>
     </div>

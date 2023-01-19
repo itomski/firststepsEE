@@ -6,13 +6,13 @@
     <%@include file="header.jsp"%>
     <%@include file="main-nav.html"%>
 
-    <div class="container">
+    <div id="content" class="container">
         <div class="row">
-            <main class="col-8">
-                <h1 id="head1">${headline}</h1>
+            <main class="col-sm-8 py-3">
+                <h1 id="mainHead">${headline}</h1>
             </main>
 
-            <aside class="col-4" id="box1">
+            <aside class="col-sm-4 py-3" id="asideBox">
             </aside>
         </div>
     </div>
@@ -22,11 +22,11 @@
     <script>
         let url = "http://localhost:8080/firststeps_war_exploded/submit"
 
-        document.getElementById("head1").addEventListener('click', () => {
+        document.getElementById("mainHead").addEventListener('click', () => {
             fetch(url) // Fragt asynchron Daten vom Server ab. asynchron = ohne die Seite neu zu laden
                 .then(res => res.json()) // Das was der Server liefert wird als JSON eingelesen
                 .then(out => { // das empfangene JSON wird verarbeitet
-                    document.getElementById("box1").innerText = out[0].name; // Name des ersten Objektes im out-Array wird in die box1 ausgegeben
+                    document.getElementById("asideBox").innerText = out[0].name; // Name des ersten Objektes im out-Array wird in die box1 ausgegeben
                 })
                 .catch(error => console.log(error)); // Wird aufgerufen, wenn etwas schief läuft
         });

@@ -11,17 +11,7 @@ import java.util.List;
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
 
-    private List<Product> products;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        products = new ArrayList<>();
-        products.add(new Product(1, "Handschuhe", "100% Wolle", 19.99));
-        products.add(new Product(2, "Taschenwärmer", "3 Std. Wärmedauer", 12.99));
-        products.add(new Product(3, "Mütze", "100% Wolle", 10.99));
-        products.add(new Product(4, "Tasse", "Keramik. Blau", 7.99));
-    }
+    private final ProductRepository repository = new ProductRepository();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,7 +19,14 @@ public class ProductServlet extends HttpServlet {
 
         request.setAttribute("title", "Produkte");
         request.setAttribute("headline", "Unsere Produkte");
-        request.setAttribute("products", products); // Weitergabe der Liste an die JSP
+        try {
+            request.setAttribute("products", repository.find()); // Weitergabe der Liste an die JSP
+        }
+        catch(Exception e) {
+            // Beim Fehler währen der DB-Abfrage kann man hier ne Meldung oder Default-Daten liefern
+            log("Fehler bei DB-Anfrage", e);
+            request.setAttribute("products", new ArrayList<>());
+        }
         // Leitet die Anfrage weiter an die JSP
         context.getRequestDispatcher("/WEB-INF/tpl/vorlage-products.jsp").forward(request, response);
     }

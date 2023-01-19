@@ -8,7 +8,7 @@
 
     <div id="content" class="container">
         <div class="row">
-            <main class="col-sm-8">
+            <main class="col-sm-8 py-3">
                 <h1>${headline}</h1>
 
                 <form action="submit" method="post">
@@ -43,7 +43,7 @@
                         <input type="email" name="email" id="email" class="form-control">
                     </div>
 
-                    <div class="mb">
+                    <div class="mb-3">
                         <label for="message" class="form-label">Nachricht</label>
                         <textarea name="message" id="message" rows="5" class="form-control"></textarea>
                     </div>
@@ -52,7 +52,7 @@
                 </form>
             </main>
 
-            <aside class="col-sm-4">
+            <aside class="col-sm-4 py-3">
                 Nebeninhalt
             </aside>
         </div>

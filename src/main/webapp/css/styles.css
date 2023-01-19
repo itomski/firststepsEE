@@ -13,12 +13,11 @@ header {
 }
 
 main {
-    background-color: var(--light-white);
     min-height: 500px;
 }
 
 #content aside {
-    background-color: var(--lighter-blue);
+    background-color: var(--light-white);
     min-height: 500px;
 }
 
@@ -30,6 +29,10 @@ footer {
 
 #top-nav {
     background-color: var(--dark-blue);
+    color: var(--light-white);
+}
+
+#top-nav button {
     color: var(--light-white);
 }
 
