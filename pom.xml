@@ -63,6 +63,13 @@
             <version>5.2.3</version>
         </dependency>
 
+        <!-- Bootstrap CSS-Framework Icons -->
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>bootstrap-icons</artifactId>
+            <version>1.10.3</version>
+        </dependency>
+
         <!-- Datenbank Treiber für MySQL -->
         <dependency>
             <groupId>com.mysql</groupId>

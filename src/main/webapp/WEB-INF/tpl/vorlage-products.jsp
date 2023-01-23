@@ -26,6 +26,8 @@
                 <!-- <%= a %> --><%-- Ausgabe --%>
                 <%-- Kommentar, wird im HTML-Code nicht angezeigt --%>
 
+                <!-- <p class="">Das ist das <span class="">Haus</span> von Nikigraus</p> -->
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -33,6 +35,7 @@
                             <th>Name</th>
                             <th>Beschreibung</th>
                             <th>Preis</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +45,14 @@
                                 <td>${p.name}</td>
                                 <td>${p.description}</td>
                                 <td>${p.price}</td>
+                                <td>
+                                    <a href="products?a=edit&id=${p.id}" class="btn btn-warning" title="Bearbeiten"> <!-- a = Anchor, Link -->
+                                        <span class="bi bi-pencil-square"></span> <!-- span = Inline-Tag ohne eigene Bedeutung -->
+                                    </a>
+                                    <a href="products?a=delete&id=${p.id}" class="btn btn-danger" title="Löschen">
+                                        <span class="bi bi-trash3"></span>
+                                    </a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>

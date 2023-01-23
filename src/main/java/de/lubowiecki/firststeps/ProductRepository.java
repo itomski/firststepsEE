@@ -9,12 +9,24 @@ public class ProductRepository {
 
     private static final String TABLE = "products";
 
+    // Fragt alle Datensätze aus der DB ab
     public List<Product> find() throws SQLException {
 
         final String sql =  "SELECT * FROM " + TABLE;
 
         try(Connection connection = DBUtil.getConnection(); Statement stmt = connection.createStatement()) {
-            ResultSet results = stmt.executeQuery(sql); // Anfrage an die Datenbank verschicken
+            /*
+            stmt.execute(sql); // Anfrage an die Datenbank verschicken
+            ResultSet results = stmt.getResultSet(); //  Daten abholen
+            */
+
+            // ResultSet
+            // id(1),   name(2),    description(3),     price(4)  <
+            // 1        Mütze       Bla bla bla         19.99
+            // 2        Socken      Bla                 7.99
+
+            // ResultSet(Ergebnis)  ist nur verfügbar, solange das zugehörige Statement(Anfrage) da ist
+            ResultSet results = stmt.executeQuery(sql); // Anfrage an die Datenbank verschicken und Daten zurückliefern
 
             List<Product> products = new ArrayList<>();
             while(results.next()) { // Ergebnisse von der Datenbank durchlaufen
@@ -25,11 +37,13 @@ public class ProductRepository {
         }
     }
 
+    // Fragt einen Datensatz ab
     public Optional<Product> find(int id) throws SQLException {
 
         final String sql =  "SELECT * FROM " + TABLE + " WHERE id = " + id;
 
         try(Connection connection = DBUtil.getConnection(); Statement stmt = connection.createStatement()) {
+            // executeQuery: Nur SELECT Anweisung d.h. Abfrage von Daten
             ResultSet results = stmt.executeQuery(sql); // Anfrage an die Datenbank verschicken
 
             if(results.next()) {
@@ -54,22 +68,62 @@ public class ProductRepository {
 
         final String sql =  "INSERT INTO " + TABLE + " (id, name, description, price) VALUES(NULL, ?, ?, ?)";
 
-        try(Connection connection = DBUtil.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+        // PreparedStatement: Schutz gegen SQL-Injection
+        // Statement.RETURN_GENERATED_KEYS: Die beim Speichern vergebene ID wir zurückgeliefert
+        try(Connection connection = DBUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
-            return stmt.executeUpdate() > 0;
+            stmt.execute(); // Schickt die Daten an die DB
+
+            ResultSet rs = stmt.getGeneratedKeys(); // Enthält die IDs, die beim Speichern vergeben wurden
+            if(rs.next()) {
+                product.setId(rs.getInt(1)); // 1 ist die erste Spalte im ResultSet
+                return true;
+            }
+
+            return false;
         }
     }
 
     private boolean update(Product product) throws SQLException {
-        throw new UnsupportedOperationException("Noch nicht implementiert");
+
+        final String sql =  "UPDATE " + TABLE + " SET name = ?, description = ?, price = ? WHERE id = ?";
+
+        // PreparedStatement: Schutz gegen SQL-Injection
+        try(Connection connection = DBUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, product.getName());
+            stmt.setString(2, product.getDescription());
+            stmt.setDouble(3, product.getPrice());
+            stmt.setDouble(4, product.getId());
+
+            // executeUpdate: INSERT, UPDATE, DELETE und DDL-Anweisungen. Liefert Anzahl betroffener Datensätze zurück
+            // DDL = Data Definition Language: SQL zum Erstellen, Löschen und Verändern von Tabellen
+            return stmt.executeUpdate() > 0;
+        }
     }
 
     public boolean delete(Product product) throws SQLException {
-        throw new UnsupportedOperationException("Noch nicht implementiert");
+        return delete(product.getId());
     }
 
+    public boolean delete(int id) throws SQLException {
+        final String sql =  "DELETE FROM " + TABLE + " WHERE id = " + id;
+
+        try(Connection connection = DBUtil.getConnection(); Statement stmt = connection.createStatement()) {
+            /*
+            stmt.execute(sql); // Anfrage an die Datenbank verschicken
+            return stmt.getUpdateCount() > 0; // Liefert die Anzahl betroffener Datensätze
+            */
+            return stmt.executeUpdate(sql) > 0; // Anfrage an die Datenbank verschicken und Anzahl betroffener Datensätze abholen
+        }
+    }
+
+    // Mapping: Umwandlung der Datensätze in Java-Objekte
     private Product create(ResultSet result) throws SQLException {
         Product product = new Product();
         product.setId(result.getInt("id"));
