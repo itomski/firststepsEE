@@ -2,42 +2,39 @@ package de.lubowiecki.firststeps;
 
 public class User { // POJO: Plain Old Java Object
 
-    private int id;
+    private String name;
 
-    private String firstname;
+    private byte[] password;
 
-    private String lastname;
+    private String role;
 
-    public User() {
+    public User(String name, byte[] password, String role) {
+        this.name = name;
+        this.password = password;
+        this.role = role;
     }
 
-    public User(int id, String firstname, String lastname) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public String getName() {
+        return name;
     }
 
-    public int getId() {
-        return id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public byte[] getPassword() {
+        return password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public void setPassword(byte[] password) {
+        this.password = password;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public String getRole() {
+        return role;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

@@ -20,16 +20,19 @@ public class ProductServlet extends HttpServlet {
 
         String action = request.getParameter("a"); // gewählte Aktion abfragen
 
+        HttpSession session = request.getSession();
+
         try {
-            if(action != null && action.equals("delete")) {
-                int id = Integer.parseInt(request.getParameter("id")); // ID für das Löschen abfragen
-                repository.delete(id); // Löschen
-                response.sendRedirect("products"); // Nach dem Löschen auf die Übersicht umleiten
-                return; // Methode beenden
-            }
-            else if(action != null && action.equals("edit")) {
-                int id = Integer.parseInt(request.getParameter("id")); // ID für das Löschen abfragen
-                request.setAttribute("product", repository.find(id).get()); // Ausgewähltes Objekt in dem Formular anzeigen
+            if(session.getAttribute("signedAs") != null && session.getAttribute("signedAs").equals("ADMIN")) {
+                if (action != null && action.equals("delete")) {
+                    int id = Integer.parseInt(request.getParameter("id")); // ID für das Löschen abfragen
+                    repository.delete(id); // Löschen
+                    response.sendRedirect("products"); // Nach dem Löschen auf die Übersicht umleiten
+                    return; // Methode beenden
+                } else if (action != null && action.equals("edit")) {
+                    int id = Integer.parseInt(request.getParameter("id")); // ID für das Löschen abfragen
+                    request.setAttribute("product", repository.find(id).get()); // Ausgewähltes Objekt in dem Formular anzeigen
+                }
             }
             else {
                 request.setAttribute("product", new Product()); // Formular mit leeren Obejt füllen
